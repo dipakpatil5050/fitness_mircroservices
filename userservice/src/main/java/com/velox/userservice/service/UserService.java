@@ -33,7 +33,7 @@ public class UserService {
         return getUserResponse(savedUser);
     }
 
-    public UserResponse getUserProfile(Long userId) {
+    public UserResponse getUserProfile(String userId) {
         User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User Not Found"));
 
         return getUserResponse(user);
@@ -48,5 +48,9 @@ public class UserService {
         userResponse.setCreatedAt(user.getCreatedAt());
         userResponse.setUpdatedAt(user.getUpdatedAt());
         return userResponse;
+    }
+
+    public Boolean existByUserId(String userId) {
+        return userRepository.existsById(userId);
     }
 }
