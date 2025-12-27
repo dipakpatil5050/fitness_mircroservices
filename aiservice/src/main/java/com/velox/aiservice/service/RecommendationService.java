@@ -3,7 +3,6 @@ package com.velox.aiservice.service;
 import com.velox.aiservice.model.Recommendation;
 import com.velox.aiservice.repository.RecommendationRepository;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +17,8 @@ public class RecommendationService {
         return recommendationRepository.findByUserId(userId);
     }
 
-    public List<Recommendation> getActivityRecommendation(String activityId) {
-        return recommendationRepository.findByActivityId(activityId);
+    public Recommendation getActivityRecommendation(String activityId) {
+        return recommendationRepository.findByActivityId(activityId)
+                .orElseThrow(()-> new RuntimeException("No Recommendation Found for activityId"));
     }
 }

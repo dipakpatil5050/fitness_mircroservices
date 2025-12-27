@@ -21,7 +21,7 @@ public class RecommendationController {
     }
 
     @GetMapping("/activity/{activityId}")
-    public ResponseEntity<List<Recommendation>> getActivityRecommendation(@RequestParam String activityId) {
+    public ResponseEntity<Recommendation> getActivityRecommendation(@RequestParam String activityId) {
         return ResponseEntity.ok(recommendationService.getActivityRecommendation(activityId));
     }
 
